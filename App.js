@@ -14,7 +14,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="All Currencies" component={AllCurrenciesScreen}/>
-                <Stack.Screen name="My Currencies" component={MyCurrenciesScreen}/>
+                <Stack.Screen name="My Currencies" component={MyCurrenciesScreen} initialParams={{ itemId: 42 }}/>
                 <Stack.Screen name="Currency" component={CurrencyScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
