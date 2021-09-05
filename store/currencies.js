@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchCurrencies = createAsyncThunk(
     'currencies/fetchStatus',
-    async (userId, thunkAPI) => {
+    async () => {
         const response = await axios.get("https://api.exchangerate.host/latest");
         return response.data
     }
@@ -51,7 +51,6 @@ export const currenciesSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { toggleCurrencyToFavorites } = currenciesSlice.actions
 
 export default currenciesSlice.reducer

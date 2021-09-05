@@ -16,3 +16,5 @@ export const SCREENS = {
     MY_CURRENCIES: "My Currencies",
     CURRENCY: "Currency"
 }
+
+export const ITEM_HEIGHT = 70;

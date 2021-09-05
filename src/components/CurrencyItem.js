@@ -1,15 +1,23 @@
 import React from "react";
-import {Text, StyleSheet, TouchableOpacity, Button} from "react-native";
-import {COLORS} from "../constants";
+import {View, Text, StyleSheet, TouchableOpacity, Button} from "react-native";
 
-export const CurrencyItem = ({ currency, onPress, onButtonPress }) => {
-    return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
-            <Text style={styles.title}>{currency.title}</Text>
-            <Button title={currency.isFavorite ? "Remove" : "Add"} onPress={onButtonPress}/>
-        </TouchableOpacity>
-    )
+import {COLORS, ITEM_HEIGHT} from "../constants";
+
+const compareIsFavorite = (prevProps, nextProps) => {
+    return nextProps.currency.isFavorite === prevProps.currency.isFavorite;
 }
+
+export const CurrencyItem = React.memo(({ currency, onPress, onButtonPress }) => {
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.content} onPress={onPress}>
+                <Text style={styles.title}>{currency.title}</Text>
+                <Text style={styles.value}>({currency.value})</Text>
+            </TouchableOpacity>
+            <Button title={currency.isFavorite ? "Remove" : "Add"} onPress={onButtonPress}/>
+        </View>
+    )
+}, compareIsFavorite);
 
 const styles = StyleSheet.create({
     container: {
@@ -17,11 +25,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: COLORS.INFO_COLOR
+        height: ITEM_HEIGHT,
+        paddingVertical: 0,
+    },
+    content: {
+        flex: 1,
+        height: "100%",
+        justifyContent: "center",
     },
     title: {
         fontSize: 16
+    },
+    value: {
+        fontSize: 12,
+        color: COLORS.MAIN_COLOR
     }
 })

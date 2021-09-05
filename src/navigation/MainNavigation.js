@@ -38,7 +38,6 @@ export const MainNavigation = ({screenOptions}) => {
                     }
                 }
             }}
-
         >
             <Tab.Screen
                 name={SCREENS.ALL_CURRENCIES}
